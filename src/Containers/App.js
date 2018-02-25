@@ -1,7 +1,9 @@
 import React, {Component} from 'react';
-import Person from './Person/Person';
+import Person from '../Components/Persons/Person/Person';
+import Persons from '../Components/Persons/Persons';
 import styles from './App.css';
-import ErrorBoundary from './ErrorBoundary/ErrorBoundary';
+import Cockpit from '../Components/Cockpit/Cockpit';
+//import ErrorBoundary from '../Components/ErrorBoundary/ErrorBoundary';
 
 class App extends Component {
     state = {
@@ -59,39 +61,39 @@ togglePersonHandler = () => {
 }
 
     render() {
-        let btnClass = '';
+        // let btnClass = '';
+        //
+        // const classes = [];
+        // if(this.state.persons.length <= 2){
+        //     classes.push(styles.red); // classes = ['red']
+        // }
+        // if(this.state.persons.length <= 1){
+        //     classes.push(styles.bold); // classes = ['red', 'bold']
+        // }
 
-        const classes = [];
-        if(this.state.persons.length <= 2){
-            classes.push(styles.red); // classes = ['red']
-        }
-        if(this.state.persons.length <= 1){
-            classes.push(styles.bold); // classes = ['red', 'bold']
-        }
-
-        let persons = null;
+         let persons = null;
 
         if(this.state.showPersons) {
             persons = (
                 <div>
-                    {this.state.persons.map((person, index) => {
-                        return <ErrorBoundary key={person.id}><Person
-                        click={() => this.deleteNameHandler(index)}
-                        name={person.name}
-                        age={person.age}
-                        changed={(event) => this.nameChangeHandler(event, person.id)} />
-                        </ErrorBoundary>
-                    })}
+                    <Persons
+                        persons={this.state.persons}
+                        click={this.deleteNameHandler}
+                        change={this.nameChangeHandler}/>
                 </div>
             );
-            btnClass = styles.Red;
+            // btnClass = styles.Red;
         }
         return (
             <div className={styles.App}>
-                <h1>Hello There, Susheel Bajaj</h1>
-                <p className={classes.join(' ')}>To Test the classes bold and color</p>
-                <button className={btnClass}
-                    onClick={this.togglePersonHandler}>Toggle Persons</button>
+                <Cockpit
+                    showPersons={this.state.showPersons}
+                    persons = {this.state.persons}
+                    clicked ={this.togglePersonHandler}/>
+                {/*<h1>Hello There, Susheel Bajaj</h1>*/}
+                {/*<p className={classes.join(' ')}>To Test the classes bold and color</p>*/}
+                {/*<button className={btnClass}*/}
+                    {/*onClick={this.togglePersonHandler}>Toggle Persons</button>*/}
                 {persons}
             </div>
         );
