@@ -5,15 +5,27 @@ import styles from './App.css';
 import Cockpit from '../Components/Cockpit/Cockpit';
 //import ErrorBoundary from '../Components/ErrorBoundary/ErrorBoundary';
 
-class App extends Component {
-    state = {
-        persons: [
-            {id:'id1', name: 'Max', age: '28'},
-            {id:'id2', name: 'Manu', age: '29'},
-            {id:'id3', name: 'Bajaj', age: '32'}
-        ],
-        title: 'mr',
-        showPersons: false
+class App extends Component { //stateful component
+    constructor (props) {
+        super(props);
+        console.log("[App.js] inside App constructor", props)
+        this.state = {
+            persons: [
+                {id:'id1', name: 'Max', age: '28'},
+                {id:'id2', name: 'Manu', age: '29'},
+                {id:'id3', name: 'Bajaj', age: '32'}
+            ],
+            title: 'mr',
+            showPersons: false
+        }
+    }
+
+    componentDidMount() {
+        console.log("[App.js] inside App componentDidMount");
+    }
+
+    componentWillMount() {
+        console.log("[App.js] inside App componentWillMount");
     }
 
     nameChangeHandler = (event, id) => {
@@ -70,6 +82,7 @@ togglePersonHandler = () => {
         // if(this.state.persons.length <= 1){
         //     classes.push(styles.bold); // classes = ['red', 'bold']
         // }
+        console.log("[App.js] inside App render");
 
          let persons = null;
 
@@ -87,6 +100,7 @@ togglePersonHandler = () => {
         return (
             <div className={styles.App}>
                 <Cockpit
+                    addTitle={this.props.title}
                     showPersons={this.state.showPersons}
                     persons = {this.state.persons}
                     clicked ={this.togglePersonHandler}/>

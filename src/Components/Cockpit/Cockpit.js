@@ -18,6 +18,7 @@ const cockpit = (props) => {
     return (
         <div className={cockpitStyles.Cockpit}>
             <h1>Hello There, Susheel Bajaj from cockpit</h1>
+            <h1>{props.addTitle}</h1>
             <p className={classes.join(' ')}>To Test the classes bold and color</p>
             <button className={btnClass}
                 onClick={props.clicked}>Toggle Persons</button>
