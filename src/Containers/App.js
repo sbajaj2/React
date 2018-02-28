@@ -28,6 +28,19 @@ class App extends Component { //stateful component
         console.log("[App.js] inside App componentWillMount");
     }
 
+    shouldComponentUpdate(nextProps, nextState) {
+        console.log("[UPDATE App.js] inside App shouldComponentUpdate", nextProps, nextState);
+        return true; //return false will not update the dom
+    }
+
+    componentWillUpdate(nextProps, nextState) {
+        console.log("[UPDATE App.js] inside App componentWillUpdate", nextProps, nextState);
+    }
+
+    componentDidUpdate() {
+        console.log("[UPDATE App.js] inside App componentDidUpdate");
+    }
+
     nameChangeHandler = (event, id) => {
         const personIndex = this.state.persons.findIndex(person => {
             return person.id === id;
