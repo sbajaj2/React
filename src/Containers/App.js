@@ -14,12 +14,13 @@ class App extends PureComponent { //stateful component
         console.log("[App.js] inside App constructor", props)
         this.state = {
             persons: [
-                {id:'id1', name: 'Max', age: '28'},
-                {id:'id2', name: 'Manu', age: '29'},
-                {id:'id3', name: 'Bajaj', age: '32'}
+                {id:'id1', name: 'Max', age: 28},
+                {id:'id2', name: 'Manu', age: 29},
+                {id:'id3', name: 'Bajaj', age: 32}
             ],
             title: 'mr',
-            showPersons: false
+            showPersons: false,
+            toggleClicked: 0
         }
     }
 
@@ -62,7 +63,7 @@ class App extends PureComponent { //stateful component
         const personChanged = [...this.state.persons];
         personChanged[personIndex] = localperson;
 
-        this.setState({persons: personChanged});
+        this.setState({persons: personChanged}); //immutable because we created a copy first above const personChanged
 
 
     }
@@ -87,7 +88,13 @@ deleteNameHandler = (personIndex) => {
 
 togglePersonHandler = () => {
     const doesShow = this.state.showPersons;
-    this.setState({showPersons: !doesShow});
+    this.setState( (prevState, props) => {
+        return {
+            showPersons: !doesShow,
+            toggleClicked: prevState.toggleClicked + 1
+        }
+
+    });
 }
 
     render() {
