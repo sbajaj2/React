@@ -1,9 +1,11 @@
 import React, {PureComponent} from 'react';
-import Person from '../Components/Persons/Person/Person';
+//import Person from '../Components/Persons/Person/Person';
 import Persons from '../Components/Persons/Persons';
 import styles from './App.css';
 import Cockpit from '../Components/Cockpit/Cockpit';
-import WithClass from '../hoc/WithClass';
+//import WithClass from '../hoc/WithClass';
+import withClass from '../hoc/anotherwithClass';
+import Aux from "../hoc/Aux";
 //import ErrorBoundary from '../Components/ErrorBoundary/ErrorBoundary';
 
 class App extends PureComponent { //stateful component
@@ -114,23 +116,18 @@ togglePersonHandler = () => {
             // btnClass = styles.Red;
         }
         return (
-            <WithClass classes={styles.App}>
-                {/*another hoc example*/}
+            <Aux>
                 <button onClick={() => {this.setState({showPersons : true})}}>Show Persons</button>
                 <Cockpit
                     addTitle={this.props.title}
                     showPersons={this.state.showPersons}
                     persons = {this.state.persons}
                     clicked ={this.togglePersonHandler}/>
-                {/*<h1>Hello There, Susheel Bajaj</h1>*/}
-                {/*<p className={classes.join(' ')}>To Test the classes bold and color</p>*/}
-                {/*<button className={btnClass}*/}
-                    {/*onClick={this.togglePersonHandler}>Toggle Persons</button>*/}
                 {persons}
-            </WithClass>
+            </Aux>
         );
     }
 }
 
 
-export default App
+export default withClass(App, styles.App);
