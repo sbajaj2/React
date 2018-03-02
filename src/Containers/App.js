@@ -3,6 +3,7 @@ import Person from '../Components/Persons/Person/Person';
 import Persons from '../Components/Persons/Persons';
 import styles from './App.css';
 import Cockpit from '../Components/Cockpit/Cockpit';
+import WithClass from '../hoc/WithClass';
 //import ErrorBoundary from '../Components/ErrorBoundary/ErrorBoundary';
 
 class App extends PureComponent { //stateful component
@@ -113,7 +114,8 @@ togglePersonHandler = () => {
             // btnClass = styles.Red;
         }
         return (
-            <div className={styles.App}>
+            <WithClass classes={styles.App}>
+                {/*another hoc example*/}
                 <button onClick={() => {this.setState({showPersons : true})}}>Show Persons</button>
                 <Cockpit
                     addTitle={this.props.title}
@@ -125,7 +127,7 @@ togglePersonHandler = () => {
                 {/*<button className={btnClass}*/}
                     {/*onClick={this.togglePersonHandler}>Toggle Persons</button>*/}
                 {persons}
-            </div>
+            </WithClass>
         );
     }
 }

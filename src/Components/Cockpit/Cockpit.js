@@ -1,6 +1,7 @@
 import React from 'react';
 import cockpitStyles from './Cockpit.css';
 import Aux from "../../hoc/Aux";
+// in react 16.2, we can just use <> </> instead of aux for HOC high order component
 
 const cockpit = (props) => {
     let btnClass = cockpitStyles.Button;
